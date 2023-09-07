@@ -1,0 +1,30 @@
+<form #testForm="ngForm">
+  <div class="col-auto">
+    <div class="input-group mb-2" class="input-wrapper">
+      <input
+        name="dropdown"
+        class="form-control"
+        type="text"
+        placeholder="Select an option"
+        [(ngModel)]="dropdown"
+        (click)="toggleDropdown()"
+      />
+      <div (click)="toggleDropdown()" class="input-group-prepend">
+        <div class="input-group-text">
+          <span class="chevron bottom"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul class="list-group" *ngIf="isDropDownOpen">
+    <li
+      [ngClass]="item.isActive ? 'activeOption' : ''"
+      (click)="selectOption($event, index);toggleDropdown()"
+      *ngFor="let item of options; let index = index"
+      class="item list-group-item"
+    >
+      {{ item.value }}
+    </li>
+  </ul>
+</form>
